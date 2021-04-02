@@ -13,6 +13,7 @@ const passwordHash = require("password-hash");
 
 
 router.post("/login", async (req, res) => {
+    console.log('logging in ...')
   let { email, password } = req.body;
   const user = await User.findOne({ email });
 
