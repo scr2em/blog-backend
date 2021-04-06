@@ -9,6 +9,7 @@ router.get("/search", async (req, res) => {
   let regex = new RegExp(q, "ig");
   let articles = await Article.find({ $text: { $search: q } });
   res.status(200).send({data: articles});
+  
 });
 
 module.exports = router;

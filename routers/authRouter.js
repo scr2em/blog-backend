@@ -37,6 +37,7 @@ router.post("/login", async (req, res) => {
   let refresh_token = createRefreshToken(user._id);
 
   // why not User.updateOne({ email}, {access_token,refresh_token})
+  
   User.findOne({ email }).then((doc) =>
     User.updateOne({ _id: doc._id }, { access_token, refresh_token })
   );
@@ -56,13 +57,13 @@ router.post("/signup", async (req, res) => {
 
   User.create({ username, email, password, bio }, async function (err, data) {
     if (err) {
-      res.stats(500).send({message:err});
+      res.status(500).send({message:err});
     } else {
       res.status(200).send({data:{
         id: data._id,
         username: data.username,
         access_token: data.access_token,
-        refresh_token: data.refresh_token,
+        // refresh_token: data.refresh_token,
       }});
     }
   });

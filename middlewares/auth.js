@@ -27,14 +27,14 @@ const isAuthorized = async (req,res,next) =>{
   let {slug} = req.params
   let article = await Article.find({slug})
   if(article.length == 0) {
-    res.status(404).send({success:false,message:"Article not found"})
+    res.status(404).send({message:"Article not found"})
     return
   }
 
   if(id == article[0].author){
     next()
   }else{
-    res.status(403).send({success:false,message:"Forbidden access"})
+    res.status(403).send({message:"Forbidden access"})
 
   }
 

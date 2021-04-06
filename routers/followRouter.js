@@ -7,7 +7,7 @@ const { isAuthenticated, isAuthorized } = require("../middlewares/auth");
 router.post("/follow:followingId", isAuthenticated, async (req, res) => {
     let {followingId} = req.params
   if (!mongoose.isValidObjectId(followingId)) {
-    res.status(404).send({message: "Bad formatted ID" });
+    res.status(400).send({message: "Bad formatted ID" });
     return;
   }
 
